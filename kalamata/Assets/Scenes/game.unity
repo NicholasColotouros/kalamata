@@ -734,10 +734,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 918711d755173524a8f36faae06d203b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  minVerticalRotation: 15
-  maxVerticalRotation: 80
-  minDistance: 3
-  maxDistance: 8
+  MinVerticalRotation: 15
+  MaxVerticalRotation: 80
+  MinDistance: 3
+  MaxDistance: 8
 --- !u!1 &1265197022
 GameObject:
   m_ObjectHideFlags: 0

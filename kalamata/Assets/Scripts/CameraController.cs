@@ -5,24 +5,24 @@ using UnityEngine;
 
 public class CameraController : MonoBehaviour
 {
-    public float minVerticalRotation = 15;
-    public float maxVerticalRotation = 80;
+    public float MinVerticalRotation = 15;
+    public float MaxVerticalRotation = 80;
 
-    public float minDistance = 5;
-    public float maxDistance = 15;
+    public float MinDistance = 5;
+    public float MaxDistance = 15;
 
-    private Transform cameraPivot;
-    private Player player;
+    private Transform CameraPivot;
+    private Player Player;
     
     void Awake()
     {
-        player = ReInput.players.GetPlayer(0);
+        Player = ReInput.players.GetPlayer(0);
     }
 
     void Start ()
     {
-        cameraPivot = transform.parent.transform;
-        transform.LookAt(cameraPivot.transform);
+        CameraPivot = transform.parent.transform;
+        transform.LookAt(CameraPivot.transform);
 	}
 	
 	void Update ()
@@ -33,16 +33,16 @@ public class CameraController : MonoBehaviour
 
     void ProcessRotationInput()
     {
-        if (player.GetButtonTimedPress("ActivateRotation", 0))
+        if (Player.GetButtonTimedPress("ActivateRotation", 0))
         {
-            float horizontalRot = player.GetAxis("Rotate Horizontal");
-            float verticalRot = player.GetAxis("Rotate Vertical");
+            float horizontalRot = Player.GetAxis("Rotate Horizontal");
+            float verticalRot = Player.GetAxis("Rotate Vertical");
 
 
-            Vector3 currentRotation = cameraPivot.eulerAngles;
+            Vector3 currentRotation = CameraPivot.eulerAngles;
             currentRotation += new Vector3(verticalRot, horizontalRot, 0);
-            currentRotation.x = Mathf.Clamp(currentRotation.x, minVerticalRotation, maxVerticalRotation);
-            cameraPivot.eulerAngles = currentRotation;
+            currentRotation.x = Mathf.Clamp(currentRotation.x, MinVerticalRotation, MaxVerticalRotation);
+            CameraPivot.eulerAngles = currentRotation;
         }
     }
 
@@ -50,7 +50,7 @@ public class CameraController : MonoBehaviour
     {
         // Camera is on the -Z so we invert
         Vector3 localposition = transform.localPosition;
-        localposition.z = Mathf.Clamp(localposition.z += player.GetAxis("Zoom"), -maxDistance, -minDistance);
+        localposition.z = Mathf.Clamp(localposition.z += Player.GetAxis("Zoom"), -MaxDistance, -MinDistance);
 
         transform.localPosition = localposition;
     }
